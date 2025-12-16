@@ -34,7 +34,7 @@ export function Navigation() {
         <div className="flex justify-between items-center h-16">
           <button
             onClick={() => scrollToSection("hero")}
-            className="text-lg font-semibold hover:text-accent transition-colors"
+            className="text-lg font-semibold text-accent transition-colors cursor-pointer"
           >
             Portfolio
           </button>
@@ -43,25 +43,25 @@ export function Navigation() {
           <div className="hidden md:flex items-center gap-8">
             <button
               onClick={() => scrollToSection("about")}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             >
               About
             </button>
             <button
               onClick={() => scrollToSection("experience")}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             >
               Experience
             </button>
             <button
               onClick={() => scrollToSection("projects")}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             >
               Projects
             </button>
             <button
               onClick={() => scrollToSection("contact")}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             >
               Contact
             </button>

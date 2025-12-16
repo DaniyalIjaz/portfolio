@@ -31,15 +31,19 @@ export function HeroSection() {
           >
             <div className="space-y-4">
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-balance leading-tight">
-                Creative Developer & Designer
+                MUHAMMAD DANIYAL IJAZ
               </h1>
-              <p className="text-xl sm:text-2xl text-muted-foreground text-pretty">
-                I craft beautiful digital experiences that blend design and code
+              <p className="text-xl sm:text-2xl text-accent font-bold text-pretty">
+            Next.js Frontend Web Developer
+              </p>
+              <p className="text-md sm:text-xl text-muted-foreground text-pretty">
+            Hands-on experience building full lifecycle applications, with a focus on scalable UI architectures, multi-tenant SaaS systems, and production
+ready web experiences.
               </p>
             </div>
 
             <div className="flex flex-wrap gap-4">
-              <Button onClick={scrollToContact} size="lg" className="gap-2">
+              <Button onClick={scrollToContact} size="lg" className="gap-2 cursor-pointer">
                 Get in touch
                 <ArrowDown className="h-4 w-4" />
               </Button>
@@ -51,23 +55,32 @@ export function HeroSection() {
             {/* Social Links */}
             <div className="flex gap-4 pt-4">
               <Button variant="ghost" size="icon" asChild>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/DaniyalIjaz" target="_blank" rel="noopener noreferrer">
                   <Github className="h-5 w-5" />
                   <span className="sr-only">GitHub</span>
                 </a>
               </Button>
-              <Button variant="ghost" size="icon" asChild>
+              {/* <Button variant="ghost" size="icon" asChild>
                 <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
                   <Linkedin className="h-5 w-5" />
                   <span className="sr-only">LinkedIn</span>
                 </a>
-              </Button>
-              <Button variant="ghost" size="icon" asChild>
-                <a href="mailto:hello@example.com">
-                  <Mail className="h-5 w-5" />
-                  <span className="sr-only">Email</span>
-                </a>
-              </Button>
+              </Button> */}
+<Button variant="ghost" size="icon" asChild>
+  <a
+    href="mailto:daniyalijaz922@gmail.com"
+    onClick={(e) => {
+      e.preventDefault();
+      window.open(
+        "https://mail.google.com/mail/?view=cm&to=daniyalijaz922@gmail.com",
+        "_blank"
+      );
+    }}
+  >
+    <Mail className="h-5 w-5" />
+    <span className="sr-only">Email</span>
+  </a>
+</Button>
             </div>
           </div>
 
@@ -80,7 +93,7 @@ export function HeroSection() {
             <div className="relative">
               <div className="absolute inset-0 bg-accent/20 rounded-full blur-3xl animate-pulse"></div>
               <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-border shadow-2xl">
-                <Image src="/professional-portrait.png" alt="Profile picture" fill className="object-cover" priority />
+                <Image src="/images/profile.jpg" alt="Profile picture" fill className="object-cover" priority />
               </div>
             </div>
           </div>

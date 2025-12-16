@@ -58,8 +58,7 @@ export function AboutSection() {
         >
           <h2 className="text-4xl sm:text-5xl font-bold mb-4">About Me</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-balance">
-            I'm a passionate developer and designer with over 5 years of experience creating digital products that make
-            a difference. I specialize in building modern web applications that are both beautiful and functional.
+          I’m a passionate Frontend Web Developer with 1+ year of hands-on experience and 20+ completed projects. I enjoy transforming ideas into clean, responsive, and accessible user interfaces using Next.js, React.js and Tailwind CSS, while maintaining strong performance and SEO best practices.
           </p>
         </div>
 

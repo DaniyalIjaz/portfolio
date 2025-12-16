@@ -6,28 +6,28 @@ import { Badge } from "@/components/ui/badge"
 
 const experiences = [
   {
-    period: "2024 — Present",
-    role: "Senior Full Stack Developer",
-    company: "Tech Innovations Inc.",
+    period: "2024 — 2025",
+    role: "Next.js Frontend Developer",
+    company: "Metaminds",
     description:
       "Leading the development of enterprise applications using Next.js, TypeScript, and modern cloud technologies. Mentoring junior developers and establishing best practices.",
-    technologies: ["Next.js", "TypeScript", "React", "Node.js", "AWS"],
+    technologies: ["Next.js", , "React.js", , "TailwindCSS", "Javascript", "TypeScript"],
   },
   {
     period: "2022 — 2024",
-    role: "Frontend Developer",
-    company: "Digital Solutions Co.",
+    role: "React.js Frontend Developer",
+    company: "Design Man Associates (Pvt) Ltd.",
     description:
-      "Built responsive web applications and design systems. Collaborated with designers to create pixel-perfect implementations of complex UI designs.",
-    technologies: ["React", "JavaScript", "Tailwind CSS", "Figma"],
+      "Developed and maintained company websites while managing SEO and digital marketing strategies to enhance performance, search rankings, and online presence.",
+    technologies: ["HTML", "CSS", "TailwindCSS", "JavaScript", "React.js"],
   },
   {
-    period: "2020 — 2022",
-    role: "Web Developer",
-    company: "Creative Agency",
+    period: "2023",
+    role: "React.js Developer (Internship)",
+    company: "Professional Practices",
     description:
-      "Developed custom websites and landing pages for various clients. Focused on performance optimization and user experience.",
-    technologies: ["HTML", "CSS", "JavaScript", "WordPress", "PHP"],
+      "Worked closely with designers and senior developers to develop React.js components for websites and landing pages, ensuring performance efficiency and a smooth user experience.",
+    technologies: ["HTML", "CSS", "JavaScript", "React.js"],
   },
 ]
 
