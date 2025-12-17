@@ -38,7 +38,7 @@ export function AboutSection() {
           setIsVisible(true)
         }
       },
-      { threshold: 0.1 },
+      { threshold: 0.15 },
     )
 
     if (sectionRef.current) {
@@ -49,34 +49,55 @@ export function AboutSection() {
   }, [])
 
   return (
-    <section id="about" ref={sectionRef} className="py-20 sm:py-32 px-4 sm:px-6 lg:px-8 bg-card/50">
-      <div className="max-w-7xl mx-auto">
+    <section
+      id="about"
+      ref={sectionRef}
+      className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-12 bg-card/50"
+    >
+      <div className="w-full max-w-7xl mx-auto">
+
+        {/* SECTION HEADER */}
         <div
-          className={`text-center mb-16 transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          className={`mb-12 sm:mb-16 text-center transition-all duration-1000 ease-out ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4">About Me</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-balance">
-          I’m a passionate Frontend Web Developer with 1+ year of hands-on experience and 20+ completed projects. I enjoy transforming ideas into clean, responsive, and accessible user interfaces using Next.js, React.js and Tailwind CSS, while maintaining strong performance and SEO best practices.
+          <h2 className="font-bold mb-4 text-3xl sm:text-4xl md:text-5xl">
+            About Me
+          </h2>
+
+          <p className="mx-auto max-w-3xl text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed text-balance">
+            I’m a passionate Frontend Web Developer with 1+ year of hands-on
+            experience and 20+ completed projects. I enjoy transforming ideas
+            into clean, responsive, and accessible user interfaces using
+            Next.js, React.js, and Tailwind CSS, while maintaining strong
+            performance and SEO best practices.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* SKILLS GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
           {skills.map((skill, index) => (
             <Card
               key={skill.title}
-              className={`p-6 border-border hover:border-accent transition-all duration-500 hover:scale-105 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              className={`p-6 sm:p-7 border-border hover:border-accent transition-all duration-500 hover:scale-[1.03] ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
+              style={{ transitionDelay: `${index * 120}ms` }}
             >
-              <skill.icon className="h-12 w-12 mb-4 text-accent" />
-              <h3 className="text-xl font-semibold mb-2">{skill.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{skill.description}</p>
+              <skill.icon className="mb-4 h-10 w-10 sm:h-12 sm:w-12 text-accent" />
+
+              <h3 className="mb-2 text-lg sm:text-xl font-semibold">
+                {skill.title}
+              </h3>
+
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                {skill.description}
+              </p>
             </Card>
           ))}
         </div>
+
       </div>
     </section>
   )

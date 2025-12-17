@@ -10,23 +10,23 @@ const experiences = [
     role: "Next.js Frontend Developer",
     company: "Metaminds",
     description:
-      "Leading the development of enterprise applications using Next.js, TypeScript, and modern cloud technologies. Mentoring junior developers and establishing best practices.",
-    technologies: ["Next.js", , "React.js", , "TailwindCSS", "Javascript", "TypeScript"],
+      "Leading the development of enterprise applications using Next.js, TypeScript, and modern frontend practices. Contributing to scalable UI architecture and maintaining high code quality.",
+    technologies: ["Next.js", "React.js", "Tailwind CSS", "JavaScript", "TypeScript"],
   },
   {
     period: "2022 — 2024",
     role: "React.js Frontend Developer",
     company: "Design Man Associates (Pvt) Ltd.",
     description:
-      "Developed and maintained company websites while managing SEO and digital marketing strategies to enhance performance, search rankings, and online presence.",
-    technologies: ["HTML", "CSS", "TailwindCSS", "JavaScript", "React.js"],
+      "Developed and maintained company websites while managing SEO and digital marketing strategies to enhance performance, search rankings, and overall online presence.",
+    technologies: ["HTML", "CSS", "Tailwind CSS", "JavaScript", "React.js"],
   },
   {
     period: "2023",
-    role: "React.js Developer (Internship)",
+    role: "React.js (Internship)",
     company: "Professional Practices",
     description:
-      "Worked closely with designers and senior developers to develop React.js components for websites and landing pages, ensuring performance efficiency and a smooth user experience.",
+      "Worked closely with designers and senior developers to build reusable React.js components for websites and landing pages, focusing on performance efficiency and a smooth user experience.",
     technologies: ["HTML", "CSS", "JavaScript", "React.js"],
   },
 ]
@@ -42,7 +42,7 @@ export function ExperienceSection() {
           setIsVisible(true)
         }
       },
-      { threshold: 0.1 },
+      { threshold: 0.15 },
     )
 
     if (sectionRef.current) {
@@ -53,34 +53,61 @@ export function ExperienceSection() {
   }, [])
 
   return (
-    <section id="experience" ref={sectionRef} className="py-20 sm:py-32 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
+    <section
+      id="experience"
+      ref={sectionRef}
+      className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-12"
+    >
+      <div className="w-full max-w-4xl mx-auto">
+
+        {/* SECTION HEADER */}
         <div
-          className={`mb-16 transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          className={`mb-12 sm:mb-16 transition-all duration-1000 ease-out ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4">Experience</h2>
-          <p className="text-xl text-muted-foreground">My professional journey building products and leading teams</p>
+          <h2 className="mb-4 font-bold text-3xl sm:text-4xl md:text-5xl">
+            Experience
+          </h2>
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl">
+            My professional journey building modern web applications and
+            contributing to impactful digital products.
+          </p>
         </div>
 
-        <div className="space-y-8">
+        {/* EXPERIENCE LIST */}
+        <div className="space-y-6 sm:space-y-8">
           {experiences.map((exp, index) => (
             <Card
               key={index}
-              className={`p-6 sm:p-8 border-border hover:border-accent transition-all duration-500 ${
-                isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
+              className={`p-5 sm:p-7 transition-all duration-700 border-border hover:border-accent ${
+                isVisible
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 -translate-x-6"
               }`}
               style={{ transitionDelay: `${index * 150}ms` }}
             >
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 gap-2">
+              {/* HEADER */}
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between mb-4">
                 <div>
-                  <h3 className="text-2xl font-semibold mb-1">{exp.role}</h3>
-                  <p className="text-accent font-medium">{exp.company}</p>
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-semibold">
+                    {exp.role}
+                  </h3>
+                  <p className="text-accent font-medium">
+                    {exp.company}
+                  </p>
                 </div>
-                <span className="text-sm text-muted-foreground whitespace-nowrap">{exp.period}</span>
+                <span className="text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                  {exp.period}
+                </span>
               </div>
-              <p className="text-muted-foreground leading-relaxed mb-4">{exp.description}</p>
+
+              {/* DESCRIPTION */}
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-4">
+                {exp.description}
+              </p>
+
+              {/* TECHNOLOGIES */}
               <div className="flex flex-wrap gap-2">
                 {exp.technologies.map((tech) => (
                   <Badge key={tech} variant="secondary">
@@ -91,6 +118,7 @@ export function ExperienceSection() {
             </Card>
           ))}
         </div>
+
       </div>
     </section>
   )
