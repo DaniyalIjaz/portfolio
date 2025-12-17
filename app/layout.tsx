@@ -10,23 +10,23 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Portfolio - Daniyal Ijaz",
   description:
-    "Professional portfolio showcasing modern web development and design projects. Specializing in React, Next.js, and creating beautiful digital experiences.",
+    "Frontend Web Developer building responsive, user-friendly, and interactive websites with modern web technologies.",
   icons: {
     icon: [
       {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
+        url: "",
+        media: "",
       },
       {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
+        url: "",
+        media: "",
       },
       {
-        url: "/icon.svg",
-        type: "image/svg+xml",
+        url: "",
+        type: "",
       },
     ],
-    apple: "/apple-icon.png",
+    apple: "",
   },
 }
 
