@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Image from "next/image"
-import { Github, Mail, ArrowDown } from "lucide-react"
+import { Github, Mail, ArrowDown, Linkedin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export function HeroSection() {
@@ -103,14 +103,21 @@ export function HeroSection() {
 
               <Button variant="ghost" size="icon" asChild>
                 <a
-                  href="mailto:daniyalijaz922@gmail.com"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    window.open(
-                      "https://mail.google.com/mail/?view=cm&to=daniyalijaz922@gmail.com",
-                      "_blank"
-                    )
-                  }}
+                  href="https://www.linkedin.com/in/daniyalijazdev/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Linkedin className="h-5 w-5" />
+                  <span className="sr-only">Linkedin</span>
+                </a>
+              </Button>
+
+            
+
+              <Button variant="ghost" size="icon" asChild>
+                <a
+                  href="#contact"
+                
                 >
                   <Mail className="h-5 w-5" />
                   <span className="sr-only">Email</span>
