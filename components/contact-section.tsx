@@ -31,13 +31,12 @@ export function ContactSection() {
     e.preventDefault();
     if (!formRef.current) return;
 
-    // Your exact EmailJS sendForm call
     emailjs
       .sendForm(
-        "Daniyal Ijaz", // your EmailJS service ID
-        "template_ypyb80q", // your template ID
+        "Daniyal Ijaz",
+        "template_ypyb80q",
         formRef.current,
-        "ycE9btg8rQQ7gfj4o" // your EmailJS public key
+        "ycE9btg8rQQ7gfj4o"
       )
       .then(
         () => {
@@ -59,74 +58,72 @@ export function ContactSection() {
     <section
       id="contact"
       ref={sectionRef}
-      className="py-20 sm:py-32 px-4 sm:px-6 lg:px-8"
+      className="relative py-16 sm:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
+      {/* Background glow */}
+      <div className="hidden sm:block absolute top-32 left-0 w-72 h-72 bg-accent/20 blur-3xl rounded-full dark:bg-accent/10" />
+      <div className="hidden sm:block absolute bottom-32 right-0 w-96 h-96 bg-accent/10 blur-3xl rounded-full dark:bg-accent/5" />
+
       <ToastContainer />
       <div className="max-w-5xl mx-auto">
         {/* Section Header */}
         <div
-          className={`text-center mb-16 transition-all duration-1000 ${
+          className={`text-center mb-12 sm:mb-16 transition-all duration-1000 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
             Let's Work Together
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-balance">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto text-balance">
             Have a project in mind? I'd love to hear about it. Send me a message
             and let's create something amazing together.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
           {/* Contact Info */}
           <div
-            className={`space-y-6 transition-all duration-1000 delay-200 ${
-              isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
+            className={`space-y-4 sm:space-y-6 transition-all duration-1000 delay-200 ${
+              isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-6"
             }`}
           >
-            <Card className="p-6 border-border">
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-accent/10 rounded-lg">
-                  <Mail className="h-6 w-6 text-accent" />
+            <Card className="p-4 sm:p-6 border-border">
+              <div className="flex items-start gap-3 sm:gap-4">
+                <div className="p-2 sm:p-3 bg-accent/10 rounded-lg">
+                  <Mail className="h-5 w-5 sm:h-6 sm:w-6 text-accent" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1">Email</h3>
-                  <p
-                  
-                    className="text-sm text-muted-foreground transition-colors"
-                  >
+                  <h3 className="font-semibold mb-1 text-sm sm:text-base">Email</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground transition-colors">
                     daniyalijaz922@gmail.com
                   </p>
                 </div>
               </div>
             </Card>
 
-            <Card className="p-6 border-border">
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-accent/10 rounded-lg">
-                  <Phone className="h-6 w-6 text-accent" />
+            <Card className="p-4 sm:p-6 border-border">
+              <div className="flex items-start gap-3 sm:gap-4">
+                <div className="p-2 sm:p-3 bg-accent/10 rounded-lg">
+                  <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-accent" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1">Phone</h3>
-                  <p
-                  
-                    className="text-sm text-muted-foreground transition-colors"
-                  >
+                  <h3 className="font-semibold mb-1 text-sm sm:text-base">Phone</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground transition-colors">
                     +92 (309) 6770806
                   </p>
                 </div>
               </div>
             </Card>
 
-            <Card className="p-6 border-border">
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-accent/10 rounded-lg">
-                  <MapPin className="h-6 w-6 text-accent" />
+            <Card className="p-4 sm:p-6 border-border">
+              <div className="flex items-start gap-3 sm:gap-4">
+                <div className="p-2 sm:p-3 bg-accent/10 rounded-lg">
+                  <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-accent" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1">Location</h3>
-                  <p className="text-sm text-muted-foreground">
+                  <h3 className="font-semibold mb-1 text-sm sm:text-base">Location</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground">
                     Skyland Waterpark Society, Lahore
                   </p>
                 </div>
@@ -136,13 +133,13 @@ export function ContactSection() {
 
           {/* Contact Form */}
           <Card
-            className={`lg:col-span-2 p-6 sm:p-8 border-border transition-all duration-1000 delay-400 ${
-              isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
+            className={`lg:col-span-2 p-4 sm:p-6 sm:p-8 border-border transition-all duration-1000 delay-400 ${
+              isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-6"
             }`}
           >
-            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="space-y-2">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                <div className="space-y-1">
                   <label htmlFor="user_name" className="text-sm font-medium">
                     Name
                   </label>
@@ -153,7 +150,7 @@ export function ContactSection() {
                     required
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-1">
                   <label htmlFor="user_email" className="text-sm font-medium">
                     Email
                   </label>
@@ -167,7 +164,7 @@ export function ContactSection() {
                 </div>
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-1">
                 <label htmlFor="subject" className="text-sm font-medium">
                   Subject
                 </label>
@@ -179,7 +176,7 @@ export function ContactSection() {
                 />
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-1">
                 <label htmlFor="user_message" className="text-sm font-medium">
                   Message
                 </label>
@@ -192,7 +189,11 @@ export function ContactSection() {
                 />
               </div>
 
-              <Button type="submit" size="lg" className="w-full sm:w-auto cursor-pointer">
+              <Button
+                type="submit"
+                size="lg"
+                className="w-full sm:w-auto cursor-pointer"
+              >
                 Send Message
               </Button>
             </form>

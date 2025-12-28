@@ -7,44 +7,41 @@ import { Card } from "@/components/ui/card"
 const skills = [
   {
     icon: Code2,
-    title: "Development",
-    description: "Building scalable applications with modern frameworks and best practices",
+    title: "Frontend Development",
+    description:
+      "Building scalable, maintainable interfaces using Next.js, React, and modern frontend patterns.",
   },
   {
     icon: Palette,
-    title: "Design",
-    description: "Creating beautiful and intuitive user interfaces that delight users",
+    title: "UI & UX Design",
+    description:
+      "Designing clean, intuitive, and responsive user experiences with strong attention to detail.",
   },
   {
     icon: Rocket,
-    title: "Performance",
-    description: "Optimizing applications for speed, accessibility, and user experience",
+    title: "Performance & SEO",
+    description:
+      "Optimizing speed, accessibility, and SEO to deliver fast, production-ready web applications.",
   },
   {
     icon: Users,
-    title: "Collaboration",
-    description: "Working with teams to deliver exceptional products on time",
+    title: "Team Collaboration",
+    description:
+      "Collaborating with designers, backend developers, and stakeholders to ship quality products.",
   },
 ]
 
 export function AboutSection() {
-  const [isVisible, setIsVisible] = useState(false)
+  const [visible, setVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.15 },
+      ([entry]) => entry.isIntersecting && setVisible(true),
+      { threshold: 0.2 }
     )
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current)
     return () => observer.disconnect()
   }, [])
 
@@ -52,42 +49,83 @@ export function AboutSection() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-12 bg-card/50"
+      className="
+        relative overflow-hidden
+        py-16 sm:py-20 md:py-28 lg:py-32
+        px-4 sm:px-6 lg:px-12
+      "
     >
-      <div className="w-full max-w-7xl mx-auto">
+      {/* Floating accents (desktop only) */}
+      <div className="hidden lg:block absolute top-48 left-12 w-40 h-40 bg-accent/15 blur-3xl rounded-full" />
+      <div className="hidden lg:block absolute bottom-24 right-12 w-52 h-52 bg-accent/10 blur-3xl rounded-full" />
 
-        {/* SECTION HEADER */}
+      <div className="max-w-7xl mx-auto">
+
+        {/* HEADER */}
         <div
-          className={`mb-12 sm:mb-16 text-center transition-all duration-1000 ease-out ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          }`}
+          className={`
+            mb-12 sm:mb-16 md:mb-20 text-center
+            transition-all duration-500 ease-out
+            ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
+          `}
         >
-          <h2 className="font-bold mb-4 text-3xl sm:text-4xl md:text-5xl">
+          <span className="inline-flex items-center gap-2 text-[11px] sm:text-xs uppercase tracking-widest text-muted-foreground mb-3">
+            <span className="w-2 h-2 bg-accent rounded-full" />
             About Me
+          </span>
+
+          <h2 className="
+            font-bold
+            text-2xl sm:text-3xl md:text-4xl lg:text-5xl
+            mb-4
+          ">
+            Crafting digital experiences
+            <br className="hidden sm:block" />
+            with code & creativity
           </h2>
 
-          <p className="mx-auto max-w-3xl text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed text-balance">
-            I’m a passionate Frontend Web Developer with 1+ year of hands-on
-            experience and 20+ completed projects. I enjoy transforming ideas
-            into clean, responsive, and accessible user interfaces using
-            Next.js, React.js, and Tailwind CSS, while maintaining strong
-            performance and SEO best practices.
+          <p className="
+            mx-auto max-w-3xl
+            text-sm sm:text-base md:text-lg
+            text-muted-foreground
+            leading-relaxed
+          ">
+            I’m a Frontend Web Developer with hands-on experience building
+            production-ready interfaces and SaaS platforms. I focus on writing
+            clean, scalable code while delivering polished UI experiences using
+            <span className="text-accent font-medium">
+              {" "}Next.js, React, and Tailwind CSS
+            </span>.  
           </p>
         </div>
 
         {/* SKILLS GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {skills.map((skill, index) => (
             <Card
               key={skill.title}
-              className={`p-6 sm:p-7 border-border hover:border-accent transition-all duration-500 hover:scale-[1.03] ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-              }`}
-              style={{ transitionDelay: `${index * 120}ms` }}
+              className={`
+                group relative p-6 sm:p-7
+                bg-background/70 backdrop-blur
+                border border-border/60
+                transition-all duration-500 ease-out
+                hover:-translate-y-2 hover:shadow-xl hover:border-accent/50
+                ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
+              `}
+              style={{ transitionDelay: `${index * 90}ms` }}
             >
-              <skill.icon className="mb-4 h-10 w-10 sm:h-12 sm:w-12 text-accent" />
+              {/* Icon */}
+              <div className="
+                mb-5 inline-flex items-center justify-center
+                w-12 h-12 rounded-xl
+                bg-accent/15 text-accent
+                transition-transform duration-300
+                group-hover:scale-110
+              ">
+                <skill.icon className="h-6 w-6" />
+              </div>
 
-              <h3 className="mb-2 text-lg sm:text-xl font-semibold">
+              <h3 className="mb-3 text-lg sm:text-xl font-semibold">
                 {skill.title}
               </h3>
 

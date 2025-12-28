@@ -1,3 +1,7 @@
+
+
+
+
 "use client"
 
 import { useEffect, useRef, useState } from "react"
@@ -6,54 +10,65 @@ import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ExternalLink, Github } from "lucide-react"
+import { motion } from "framer-motion"
 
 const projects = [
   {
     title: "FLUORA | EVENT MANAGEMENT WEBSITE",
     description:
-      "Fluora is a full-stack event management platform that offers secure role-based access for hosts and vendors, real-time event workflows, RLS-protected data, and a responsive animated UI. Powered by Fluora Assist, it provides smart vendor suggestions and conversational event-planning support.",
+      "Fluora is a full-stack event management platform with secure role-based access, real-time workflows, and responsive animated UI.",
     image: "/images/fluora.png",
-    technologies: ["Next.js", "TailwindCSS", "Typscript", "Supabase"],
+    technologies: ["Next.js", "TailwindCSS", "TypeScript", "Supabase"],
     liveUrl: "",
     githubUrl: "https://github.com/DaniyalIjaz/fluora",
   },
   {
     title: "ASTRO VISTAAR | ASTROLOGY & OCCULT COURSES WEBSITE",
     description:
-      "Astro Vistaar is built with Next.js, TypeScript, Tailwind CSS, and Framer Motion, featuring a smoke-effect preloader, parallax scrolling, animated route transitions, and a custom animated cursor. Its modular architecture focuses on smooth motion, micro-interactions, and performance-optimized visual effects.",
+      "Astro Vistaar features smoke-effect preloader, parallax scrolling, animated route transitions, and custom animated cursor.",
     image: "/images/astro.png",
-    technologies: ["Next.js", "TailwindCSS", "Typscript", "Framer Motion"],
+    technologies: ["Next.js", "TailwindCSS", "TypeScript", "Framer Motion"],
     liveUrl: "https://astrovistaar.com/",
     githubUrl: "",
   },
   {
     title: "XOTEK | SOFTWARE COMPANY PORTFOLIO",
     description:
-      "Xotek is built with Next.js, TypeScript, Tailwind CSS, and Framer Motion, featuring a clean modern UI, smooth page transitions, responsive layouts, and subtle micro-interactions. Its modular architecture focuses on scalability, performance optimization, and seamless frontend–backend integration.",
+      "Xotek has clean modern UI, smooth page transitions, responsive layouts, and subtle micro-interactions.",
     image: "/images/xotek.png",
-    technologies: ["Next.js", "TailwindCSS", "Typscript", "Framer Motion"],
+    technologies: ["Next.js", "TailwindCSS", "TypeScript", "Framer Motion"],
     liveUrl: "https://xotek.co/",
     githubUrl: "https://github.com/Mahid1856502/xotek",
   },
   {
     title: "FINTECH BUSSINESS ADVISORS | BOOKKEEPING SERVICES WEBSITE",
     description:
-      "Fintech Business Advisors features a professional, conversion-focused website with a clean layout, responsive design, and clear service presentation. Its structure emphasizes trust, clarity, and seamless navigation to effectively showcase bookkeeping and financial advisory services.",
+      "Fintech Business Advisors website emphasizes trust, clarity, and seamless navigation for financial services.",
     image: "/images/fintech.png",
-    technologies: ["Next.js", "TailwindCSS", "Typscript", "Framer Motion"],
+    technologies: ["Next.js", "TailwindCSS", "TypeScript", "Framer Motion"],
     liveUrl: "https://finbize.com/",
     githubUrl: "https://github.com/DaniyalIjaz/fintech-fe",
   },
   {
-    title: "DESIGN MAN ASSOCIATES (PVT) LTD. | CONSTRUCTION SERVICES WEBSITE",
+    title: "DESIGN MAN ASSOCIATES | CONSTRUCTION SERVICES WEBSITE",
     description:
-      "Design Man Associates (Pvt) Ltd. features a professional construction services website with a clean, structured layout, responsive design, and clear service sections. The interface emphasizes credibility, project showcase clarity, and smooth navigation for an effective client-focused experience.",
+      "Design Man Associates features a clean, structured layout, responsive design, and client-focused UX.",
     image: "/images/dma.png",
-    technologies: ["React.js", "TailwindCSS", "Javascript", "Framer Motion"],
+    technologies: ["React.js", "TailwindCSS", "JavaScript", "Framer Motion"],
     liveUrl: "https://designmanassociates.com.pk/",
     githubUrl: "https://github.com/DaniyalIjaz/DMA-Website-",
   },
 ]
+
+const techColors: Record<string, string> = {
+  "Next.js": "bg-gradient-to-r from-gray-700 to-gray-900 text-white",
+  "React.js": "bg-gradient-to-r from-blue-400 to-blue-600 text-white",
+  "TailwindCSS": "bg-gradient-to-r from-teal-400 to-teal-600 text-white",
+  "TypeScript": "bg-gradient-to-r from-blue-500 to-blue-700 text-white",
+  "JavaScript": "bg-yellow-400 text-black",
+  "Framer Motion": "bg-purple-500 text-white",
+  "Supabase": "bg-green-500 text-white",
+}
 
 export function ProjectsSection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -62,7 +77,7 @@ export function ProjectsSection() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => entry.isIntersecting && setIsVisible(true),
-      { threshold: 0.1 },
+      { threshold: 0.1 }
     )
 
     if (sectionRef.current) observer.observe(sectionRef.current)
@@ -73,154 +88,114 @@ export function ProjectsSection() {
     <section
       ref={sectionRef}
       id="projects"
-      className="
-        bg-card/50
-        px-4 py-12
-        sm:px-6 sm:py-16
-        lg:px-10 lg:py-24
-      "
+      className=" px-4 py-12 sm:px-6 sm:py-16 lg:px-10 lg:py-24 relative"
     >
-      <div className="mx-auto max-w-7xl">
+      {/* Background glows */}
+          {/* Background glow */}
+      <div className="absolute top-32 left-0 w-72 h-72 bg-accent/20 blur-3xl rounded-full dark:bg-accent/10" />
+      <div className="absolute bottom-32 right-0 w-96 h-96 bg-accent/10 blur-3xl rounded-full dark:bg-accent/5" />
+
+      <div className="mx-auto max-w-7xl relative z-10">
 
         {/* HEADER */}
-        <div
-          className={`mb-8 sm:mb-12
-            transition-all duration-1000
-            ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+        <motion.div
+          className="mb-8 sm:mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
         >
-          <h2 className="
-            font-bold
-            text-2xl
-            sm:text-3xl
-            lg:text-5xl
-          ">
+          <h2 className="font-bold text-2xl sm:text-3xl lg:text-5xl">
             Featured Projects
           </h2>
-
-          <p className="
-            mt-3
-            text-sm
-            sm:text-base
-            text-muted-foreground
-            max-w-xl
-          ">
-            A curated selection of projects showcasing my frontend development
-            skills and UI design approach.
+          <p className="mt-3 text-sm sm:text-base text-muted-foreground max-w-xl">
+            A curated selection of projects showcasing my frontend development skills and UI design approach.
           </p>
-        </div>
+        </motion.div>
 
         {/* GRID */}
-        <div className="
-          grid grid-cols-1
-          gap-6
-          sm:grid-cols-2
-          lg:grid-cols-3
-        ">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => (
-            <Card
+            <motion.div
               key={project.title}
-              style={{ transitionDelay: `${index * 120}ms` }}
-              className={`
-                group overflow-hidden
-                transition-all duration-700
-                hover:shadow-xl
-                ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
-              `}
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={isVisible ? { opacity: 1, y: 0, scale: 1 } : {}}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
             >
-              {/* IMAGE */}
-              <div className="
-                relative w-full overflow-hidden
-                h-36
-                sm:h-44
-                lg:h-52
-              ">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  sizes="(max-width: 640px) 100vw, 33vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-
-              {/* CONTENT */}
-              <div className="p-4 sm:p-6 space-y-4">
-                <h3 className="
-                  font-semibold
-                  text-base
-                  sm:text-lg
-                  lg:text-xl
-                ">
-                  {project.title}
-                </h3>
-
-                <p className="
-                  text-xs
-                  sm:text-sm
-                  text-muted-foreground
-                  leading-relaxed
-                ">
-                  {project.description}
-                </p>
-
-                {/* TECH */}
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech) => (
-                    <Badge key={tech} variant="secondary">
-                      {tech}
-                    </Badge>
-                  ))}
+              <Card className="group relative overflow-hidden rounded-2xl
+                bg-card/50 backdrop-blur-xl border border-border/40
+                hover:-translate-y-2 hover:shadow-2xl hover:border-accent/60
+                transition-all duration-500 ease-out py-0"
+              >
+                {/* Image */}
+                <div className="relative w-full h-36 sm:h-44 lg:h-52 overflow-hidden rounded-t-2xl">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl" />
                 </div>
 
-                {/* BUTTONS */}
-             <div
-  className="
-    flex flex-col gap-3
-    sm:flex-row
-  "
->
-  {project.liveUrl && (
-    <Button
-      size="sm"
-      variant="outline"
-      className="w-full sm:w-auto gap-2"
-      asChild
-    >
-      <a
-        href={project.liveUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <ExternalLink className="h-4 w-4" />
-        Live
-      </a>
-    </Button>
-  )}
+                {/* Content */}
+                <div className="p-4 sm:p-6 space-y-4">
+                  <h3 className="font-semibold text-base sm:text-lg lg:text-xl">
+                    {project.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                    {project.description}
+                  </p>
 
-  {project.githubUrl && (
-    <Button
-      size="sm"
-      variant="outline"
-      className="w-full sm:w-auto gap-2"
-      asChild
+        {/* Tech badges */}
+<div className="flex flex-wrap gap-2">
+  {project.technologies.map((tech) => (
+    <Badge
+      key={tech}
+      className={`
+        text-xs sm:text-sm px-3 py-1 rounded-full
+        transition-colors duration-300
+       bg-gray-200 text-gray-900 dark:bg-gray-800 dark:text-gray-100
+      `}
     >
-      <a
-        href={project.githubUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Github className="h-4 w-4" />
-        Code
-      </a>
-    </Button>
-  )}
+      {tech}
+    </Badge>
+  ))}
 </div>
 
-              </div>
-            </Card>
+
+                  {/* Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-3 mt-2">
+                    {project.liveUrl && (
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="w-full sm:w-auto gap-2 hover:scale-105 transition-transform duration-300"
+                        asChild
+                      >
+                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4" /> Live
+                        </a>
+                      </Button>
+                    )}
+                    {project.githubUrl && (
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="w-full sm:w-auto gap-2 hover:scale-105 transition-transform duration-300"
+                        asChild
+                      >
+                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                          <Github className="h-4 w-4" /> Code
+                        </a>
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   )

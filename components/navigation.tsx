@@ -2,16 +2,21 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
+
+const navItems = [
+  { label: "About", id: "about" },
+  { label: "Experience", id: "experience" },
+  { label: "Projects", id: "projects" },
+  { label: "Contact", id: "contact" },
+]
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
+    const handleScroll = () => setIsScrolled(window.scrollY > 50)
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
@@ -25,91 +30,96 @@ export function Navigation() {
   }
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/80 backdrop-blur-lg border-b border-border" : "bg-transparent"
-      }`}
+    <motion.nav
+      initial={{ y: -50, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] sm:w-[85%] md:w-[70%] max-w-3xl"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+      <div className="relative rounded-[3rem] overflow-hidden bg-white/10 backdrop-blur-[40px] border border-white/10 shadow-2xl mx-2 px-6 md:px-20">
+        <div className="relative flex justify-between items-center py-2 md:py-4 px-6">
+          {/* Logo */}
           <button
             onClick={() => scrollToSection("hero")}
-            className="text-lg font-semibold text-accent transition-colors cursor-pointer"
+            className="text-white font-bold text-lg cursor-pointer transition-transform duration-200 hover:scale-105"
           >
             Portfolio
           </button>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            <button
-              onClick={() => scrollToSection("about")}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-            >
-              About
-            </button>
-            <button
-              onClick={() => scrollToSection("experience")}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-            >
-              Experience
-            </button>
-            <button
-              onClick={() => scrollToSection("projects")}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-            >
-              Projects
-            </button>
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-            >
-              Contact
-            </button>
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-6">
+            {navItems.map((item, i) => (
+              <motion.button
+                key={item.label}
+                onClick={() => scrollToSection(item.id)}
+                className="text-white text-sm font-semibold cursor-pointer transition-transform duration-200 hover:text-accent"
+                initial={{ y: -5, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ type: "spring", stiffness: 300, damping: 25, delay: i * 0.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {item.label}
+              </motion.button>
+            ))}
           </div>
 
-          {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </Button>
+          {/* Mobile Hamburger */}
+          <div className="md:hidden flex justify-end w-full">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              <motion.div className="relative w-6 h-5 flex flex-col justify-between">
+                <motion.span
+                  animate={isMobileMenuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="block h-[1px] w-6 bg-white rounded origin-center"
+                />
+                <motion.span
+                  animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="block h-[1px] w-6 bg-white rounded origin-center"
+                />
+                <motion.span
+                  animate={isMobileMenuOpen ? { rotate: -45, y: -12 } : { rotate: 0, y: 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="block h-[1px] w-6 bg-white rounded origin-center"
+                />
+              </motion.div>
+            </Button>
+          </div>
         </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              key="mobile-menu"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
+              className="md:hidden rounded-[2rem] p-6 mt-2 flex flex-col gap-4 w-[90%] mx-auto"
+            >
+              {navItems.map((item, i) => (
+                <motion.button
+                  key={item.label}
+                  onClick={() => scrollToSection(item.id)}
+                  className="text-white font-bold text-lg cursor-pointer transition-transform duration-200 hover:scale-105"
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.8, opacity: 0 }}
+                  transition={{ duration: 0.25, delay: i * 0.05, ease: "easeInOut" }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {item.label}
+                </motion.button>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-card border-t border-border animate-fade-in">
-          <div className="px-4 py-4 space-y-3">
-            <button
-              onClick={() => scrollToSection("about")}
-              className="block w-full text-left px-4 py-2 text-sm hover:bg-secondary rounded-lg transition-colors"
-            >
-              About
-            </button>
-            <button
-              onClick={() => scrollToSection("experience")}
-              className="block w-full text-left px-4 py-2 text-sm hover:bg-secondary rounded-lg transition-colors"
-            >
-              Experience
-            </button>
-            <button
-              onClick={() => scrollToSection("projects")}
-              className="block w-full text-left px-4 py-2 text-sm hover:bg-secondary rounded-lg transition-colors"
-            >
-              Projects
-            </button>
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="block w-full text-left px-4 py-2 text-sm hover:bg-secondary rounded-lg transition-colors"
-            >
-              Contact
-            </button>
-          </div>
-        </div>
-      )}
-    </nav>
+    </motion.nav>
   )
 }
